@@ -99,6 +99,11 @@ class CnoidBodyReader(object):
             try:
                 if l['type'] == 'Skip':
                     continue
+                if l['type'] == 'SubBody':
+                    subbody = CnoidBodyReader()
+                    sbm = subbody.read(l['uri'])
+                    bm.links.append(sbm.links)
+                    continue
             except KeyError:
                 pass
 
