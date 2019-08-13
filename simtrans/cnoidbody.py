@@ -108,7 +108,12 @@ class CnoidBodyReader(object):
                 if l['type'] == 'SubBody':
                     subbody = CnoidBodyReader()
                     sbm = subbody.read(l['uri'])
-                    bm.links.append(sbm.links)
+                    self._linknamemap.update(subbody.linknamemap())
+                    self._rel_poses.update(subbody.rel_poses())
+                    for sjm in sbm.joints:
+                        bm.joints.append(sjm)
+                    for slm in sbm.links:
+                        bm.links.append(slm)
                     continue
             except KeyError:
                 pass
