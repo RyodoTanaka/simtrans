@@ -50,6 +50,12 @@ class CnoidBodyReader(object):
         self._to_radian = lambda x: x
         self._rel_poses = {}
 
+    def linknamemap(self):
+        return self._linknamemap
+
+    def rel_poses(self):
+        return self._rel_poses
+
     def dict_to_list(self, es):
         if type(es) == dict:
             r = []
