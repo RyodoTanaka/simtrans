@@ -369,7 +369,7 @@ class CnoidBodyReader(object):
                     reader = collada.ColladaReader()
                 else:
                     reader = stl.STLReader()
-                    sm.data = reader.read(filename, assethandler=self._assethandler)
+                sm.data = reader.read(filename, assethandler=self._assethandler)
             elif t == 'Sphere':
                 sm.shapeType = model.ShapeModel.SP_SPHERE
                 sm.data = model.SphereData()
