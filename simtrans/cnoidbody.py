@@ -237,6 +237,12 @@ class CnoidBodyReader(object):
                 j.axis.axis = [0, 1, 0]
             elif v == 'Z':
                 j.axis.axis = [0, 0, 1]
+            elif v == '-X':
+                j.adis.axis = [-1, 0, 0]
+            elif v == '-Y':
+                j.axis.axis = [0, -1, 0]
+            elif v == '-Z':
+                j.axis.axis = [0, 0, -1]
             else:
                 j.axis.axis = v
         except KeyError:
