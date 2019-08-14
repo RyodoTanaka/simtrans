@@ -218,7 +218,7 @@ class CnoidBodyReader(object):
             else:
                 j.axis.limit = [self._to_radian(v[1]), self._to_radian(v[0])]
         except KeyError:
-            pass
+            j.jointType = model.JointModel.J_CONTINUOUS
         try:
             v = float(m['maxJointVelocity'])
             j.axis.velocitylimit = [v, -v]
