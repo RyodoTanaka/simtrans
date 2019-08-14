@@ -466,3 +466,12 @@ class CnoidBodyReader(object):
             sm.rot = None
             sm.sensorType = model.SensorModel.SS_IMU
             context['body'].sensors.append(sm)
+        # elif t == 'Resource':
+        #     sm.shapeType = model.ShapeModel.SP_MESH
+        #     filename = utils.resolveFile(e['geometry']['uri'])
+        #     fileext = os.path.splitext(filename)[1].lower()
+        #     if fileext == '.dae':
+        #         reader = collada.ColladaReader()
+        #     else:
+        #         reader = stl.STLReader()
+        #     sm.data = reader.read(filename, assethandler=self._assethandler)
