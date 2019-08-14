@@ -24,6 +24,7 @@ from . import model
 from . import utils
 from . import collada
 from . import stl
+from . import vrml
 import os
 import sys
 import time
