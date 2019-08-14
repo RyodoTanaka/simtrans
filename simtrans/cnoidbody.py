@@ -293,6 +293,32 @@ class CnoidBodyReader(object):
         elif t == 'Visual':
             context['shapeType'] = 'visual'
             try:
+                sm = model.ShapeModel()
+                tm = model.TransformationModel()
+                try:
+                    tm.trans = numpy.array(e['translation'])
+                except KeyError:
+                    pass
+                try:
+                    tm.rot = self.read_rotation(e['rotation'])
+                except KeyError:
+                    pass
+                sm.matrix = numpy.dot(context['trans'], tm.getmatrix())
+                sm.trans = None
+                sm.rot = None
+                sm.shapeType = model.ShapeModel.SP_MESH
+                filename = utils.resolveFile(e['resource']['uri'])
+                fileext = os.path.splitext(filename)[1].lower()
+                if fileext == '.stl':
+                    reader = stl.STLReader()
+                    sm.data = reader.read(filename, assethandler=self._assethandler)
+                if context['shapeType'] == 'visual':
+                    context['link'].visuals.append(sm)
+                else:
+                    context['link'].collisions.append(sm)
+            except KeyError:
+                pass
+            try:
                 for ce in self.dict_to_list(e['elements']):
                     self.readItem(ce, context)
             except KeyError:
